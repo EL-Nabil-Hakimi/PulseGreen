@@ -16,44 +16,47 @@ import java.util.stream.Collectors;
 public class ConsumptionService {
     ConnectionUtil connectionUtil = ConnectionUtil.getInstance();
     Connection conn = connectionUtil.getConnection();
+    AlimentationDao alimentation = new  AlimentationDao();
+    LogementDao logement = new  LogementDao();
+    TransportDao transport = new TransportDao();
 
 
     public boolean addAlimentation(LocalDate startDate , LocalDate endDate , float consumption
             ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Alimentation newAlimentation = new Alimentation(startDate , endDate , consumption , type , name , impact , poids);
-        new AlimentationDao().insertAlimentation(newAlimentation , cin , type);
+        alimentation.insertAlimentation(newAlimentation , cin , type);
         return true;
     }
 
     public boolean addTransport(LocalDate startDate , LocalDate endDate , float consumption
             ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Transport newTransport = new Transport(startDate , endDate , consumption , type , name , impact , poids);
-        new TransportDao().insertVhicleType(newTransport , cin , type);
+        transport.insertVhicleType(newTransport , cin , type);
         return true;
     }
 
     public boolean addLogement(LocalDate startDate , LocalDate endDate , float consumption
             ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Logement newLogement = new Logement(startDate , endDate , consumption , type , name , impact , poids);
-        new LogementDao().insertEnergieType(newLogement , cin , type);
+        logement.insertEnergieType(newLogement , cin , type);
         return true;
     }
 
     private List<Alimentation> listOfAlimentation() throws SQLException {
-        return new AlimentationDao().getAllAlimentation();
+        return alimentation.getAllAlimentation();
     }
 
     private List<Logement> listOfLogement() throws SQLException {
 
-        return new LogementDao().getAllLogement();
+        return logement.getAllLogement();
     }
 
     private List<Logement> listOfLogementByCin(User user) throws SQLException {
-        return new LogementDao().getLogementByCin(user.getCin());
+        return logement.getLogementByCin(user.getCin());
     }
 
     private List<Transport> listOfTransport() throws SQLException {
-        return new TransportDao().getAllTransports();
+        return transport.getAllTransports();
     }
 
     public void getAlimentation() throws SQLException {
@@ -140,9 +143,9 @@ public class ConsumptionService {
     //charging all consumptions for user
     public User getAllUsersConsumptionsByCin(User user) throws SQLException
     {
-        List<Logement> logementList = new LogementDao().getLogementByCin(user.getCin());
-        List<Transport> transportList = new TransportDao().geTransportByCin(user.getCin());
-        List<Alimentation> alimentationList = new AlimentationDao().getAlimentationByCin(user.getCin());
+        List<Logement> logementList = logement.getLogementByCin(user.getCin());
+        List<Transport> transportList = transport.geTransportByCin(user.getCin());
+        List<Alimentation> alimentationList = alimentation.getAlimentationByCin(user.getCin());
        logementList.forEach(e -> {
            user.getConsumptionList().add(e);
        });

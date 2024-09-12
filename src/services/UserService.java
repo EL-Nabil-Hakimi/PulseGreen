@@ -12,24 +12,25 @@ import java.util.List;
 public class UserService {
     ConnectionUtil connectionUtil = ConnectionUtil.getInstance();
     Connection conn = connectionUtil.getConnection();
+    UserDao userDao = new UserDao();
 
     public User getUserByCin(String cin) throws SQLException {
-        User user =  new UserDao().getUserByCin(cin);
+        User user =  userDao.getUserByCin(cin);
         return  user;
     }
 
     public boolean addUser(String cin , String name , int age) throws SQLException {
         User user = new User(cin, name, age);
-        return new UserDao().insertUser(user);
+        return userDao.insertUser(user);
     }
 
     public List<User> getAllUsers() throws SQLException {
-        List<User> users = new UserDao().getAllUsers();
+        List<User> users = userDao.getAllUsers();
         return users ;
     }
 
     public boolean deleteUser(String cin) throws SQLException {
-        return new UserDao().deleteUserByCin(cin);
+        return userDao.deleteUserByCin(cin);
     }
 
 }
