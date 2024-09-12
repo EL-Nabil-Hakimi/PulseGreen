@@ -21,39 +21,39 @@ public class ConsumptionService {
     public boolean addAlimentation(LocalDate startDate , LocalDate endDate , float consumption
             ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Alimentation newAlimentation = new Alimentation(startDate , endDate , consumption , type , name , impact , poids);
-        new AlimentationDao(conn).insertAlimentation(newAlimentation , cin , type);
+        new AlimentationDao().insertAlimentation(newAlimentation , cin , type);
         return true;
     }
 
     public boolean addTransport(LocalDate startDate , LocalDate endDate , float consumption
             ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Transport newTransport = new Transport(startDate , endDate , consumption , type , name , impact , poids);
-        new TransportDao(conn).insertVhicleType(newTransport , cin , type);
+        new TransportDao().insertVhicleType(newTransport , cin , type);
         return true;
     }
 
     public boolean addLogement(LocalDate startDate , LocalDate endDate , float consumption
             ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Logement newLogement = new Logement(startDate , endDate , consumption , type , name , impact , poids);
-        new LogementDao(conn).insertEnergieType(newLogement , cin , type);
+        new LogementDao().insertEnergieType(newLogement , cin , type);
         return true;
     }
 
     private List<Alimentation> listOfAlimentation() throws SQLException {
-        return new AlimentationDao(conn).getAllAlimentation();
+        return new AlimentationDao().getAllAlimentation();
     }
 
     private List<Logement> listOfLogement() throws SQLException {
 
-        return new LogementDao(conn).getAllLogement();
+        return new LogementDao().getAllLogement();
     }
 
     private List<Logement> listOfLogementByCin(User user) throws SQLException {
-        return new LogementDao(conn).getLogementByCin(user.getCin());
+        return new LogementDao().getLogementByCin(user.getCin());
     }
 
     private List<Transport> listOfTransport() throws SQLException {
-        return new TransportDao(conn).getAllTransports();
+        return new TransportDao().getAllTransports();
     }
 
     public void getAlimentation() throws SQLException {
@@ -86,7 +86,7 @@ public class ConsumptionService {
 
     public void getAllUsersConsumptions() throws SQLException
     {
-        UserDao userDao = new UserDao(conn);
+        UserDao userDao = new UserDao();
         List<User> listUsers = userDao.getAllUsers();
         listUsers.forEach(e->
         {
@@ -113,7 +113,7 @@ public class ConsumptionService {
 
    public List<User> getAllUsersConsumptionsImpactSorted() throws SQLException
     {
-        List<User> users = new  UserDao(conn).getAllUsers();
+        List<User> users = new  UserDao().getAllUsers();
         users.forEach(e->{
             try {
                 getAllUsersConsumptionsByCin(e);
@@ -140,9 +140,9 @@ public class ConsumptionService {
     //charging all consumptions for user
     public User getAllUsersConsumptionsByCin(User user) throws SQLException
     {
-        List<Logement> logementList = new LogementDao(conn).getLogementByCin(user.getCin());
-        List<Transport> transportList = new TransportDao(conn).geTransportByCin(user.getCin());
-        List<Alimentation> alimentationList = new AlimentationDao(conn).getAlimentationByCin(user.getCin());
+        List<Logement> logementList = new LogementDao().getLogementByCin(user.getCin());
+        List<Transport> transportList = new TransportDao().geTransportByCin(user.getCin());
+        List<Alimentation> alimentationList = new AlimentationDao().getAlimentationByCin(user.getCin());
        logementList.forEach(e -> {
            user.getConsumptionList().add(e);
        });
@@ -184,7 +184,7 @@ public class ConsumptionService {
     }
 
     public List<User> getAllUsersInactive() throws SQLException {
-        List<User> users = new UserDao(conn).getAllUsers();
+        List<User> users = new UserDao().getAllUsers();
         List<User> inactiveUsers = new ArrayList<>();
         users.forEach(user -> {
             try {

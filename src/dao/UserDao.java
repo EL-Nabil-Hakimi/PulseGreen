@@ -1,6 +1,7 @@
 package dao;
 
 
+import dataBase.ConnectionUtil;
 import models.User;
 
 import java.sql.Connection;
@@ -14,8 +15,9 @@ import java.util.List;
 
         private final Connection connection;
 
-        public UserDao(Connection connection) {
-            this.connection = connection;
+        public UserDao() {
+
+            this.connection = ConnectionUtil.getInstance().getConnection();
         }
 
         public boolean  insertUser(User user) throws SQLException {

@@ -1,5 +1,6 @@
 package dao;
 
+import dataBase.ConnectionUtil;
 import models.Alimentation;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ import enums.ConsumptionType;
 public class AlimentationDao {
     private final Connection connection;
 
-    public AlimentationDao(Connection connection) {
-        this.connection = connection;
+    public AlimentationDao() {
+        this.connection = ConnectionUtil.getInstance().getConnection();
     }
 
     public boolean insertAlimentation(Alimentation alimenType, String cin, ConsumptionType type) throws SQLException {

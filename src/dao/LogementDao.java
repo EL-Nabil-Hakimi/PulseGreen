@@ -1,5 +1,6 @@
 package dao;
 
+import dataBase.ConnectionUtil;
 import models.Logement;
 
 import java.sql.*;
@@ -13,8 +14,9 @@ import enums.ConsumptionType;
 public class LogementDao {
     private final Connection connection;
 
-    public LogementDao(Connection connection) {
-        this.connection = connection;
+    public LogementDao() {
+
+        this.connection = ConnectionUtil.getInstance().getConnection();
     }
 
     public boolean insertEnergieType(Logement energieType, String cin, ConsumptionType type) throws SQLException {

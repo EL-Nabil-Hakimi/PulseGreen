@@ -1,5 +1,6 @@
 package dao;
 
+import dataBase.ConnectionUtil;
 import models.Transport;
 
 import java.sql.*;
@@ -13,8 +14,9 @@ import enums.ConsumptionType;
 public class TransportDao {
     private final Connection connection;
 
-    public TransportDao(Connection connection) {
-        this.connection = connection;
+    public TransportDao() {
+
+        this.connection = ConnectionUtil.getInstance().getConnection();
     }
 
     public boolean insertVhicleType(Transport vhicleType, String cin , ConsumptionType type) throws SQLException {

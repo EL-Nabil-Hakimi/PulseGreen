@@ -14,22 +14,22 @@ public class UserService {
     Connection conn = connectionUtil.getConnection();
 
     public User getUserByCin(String cin) throws SQLException {
-        User user =  new UserDao(conn).getUserByCin(cin);
+        User user =  new UserDao().getUserByCin(cin);
         return  user;
     }
 
     public boolean addUser(String cin , String name , int age) throws SQLException {
         User user = new User(cin, name, age);
-        return new UserDao(conn).insertUser(user);
+        return new UserDao().insertUser(user);
     }
 
     public List<User> getAllUsers() throws SQLException {
-        List<User> users = new UserDao(conn).getAllUsers();
+        List<User> users = new UserDao().getAllUsers();
         return users ;
     }
 
     public boolean deleteUser(String cin) throws SQLException {
-        return new UserDao(conn).deleteUserByCin(cin);
+        return new UserDao().deleteUserByCin(cin);
     }
 
 }
