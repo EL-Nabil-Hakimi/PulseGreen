@@ -48,7 +48,7 @@ public class Transport extends Consumption{
                 ", Tipe de consommation=" + getType() +
                 ", Name ='" + name + '\'' +
                 ", Impact=" + impact +
-                ", Distance parcourue =" + getParcourue() +
+                ", Distance parcoure =" + getParcourue() +
                 " Calcul Impact = " + calculerImpact() +
                 " Kg/co²" ;
     }

@@ -64,7 +64,7 @@ public class TransportDao {
     public List<Transport> getAllTransports() throws SQLException {
         List<Transport> transportsList = new ArrayList<>();
 
-        String query = "SELECT * FROM \"alimentation\"";
+        String query = "SELECT * FROM \"transport \"";
 
         try (PreparedStatement ps = connection.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {

@@ -108,7 +108,7 @@ public class ConsumptionService {
     }
 
 
-   public List<User> getAllUsersConsumptionsImpact() throws SQLException
+   public List<User> getAllUsersConsumptionsImpactSorted() throws SQLException
     {
         List<User> users = new  UserDao(conn).getAllUsers();
         users.forEach(e->{

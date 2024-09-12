@@ -82,7 +82,7 @@ public class UserView {
     }
 
     private void  endLine(){
-        System.out.println("Enter for continue ! ");
+        System.err.println("Enter for continue ! ");
         scanner.nextLine();
     }
 

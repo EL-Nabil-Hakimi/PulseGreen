@@ -1,11 +1,13 @@
 package view;
 
 import enums.ConsumptionType;
+import models.User;
 import services.ConsumptionService;
 import services.UserService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsumptionView {
@@ -162,8 +164,12 @@ public class ConsumptionView {
                 new ConsumptionService().getAllConsumption();
                 endLine();
         }
-    public void getAllConsumptionsImpact() throws SQLException {
-                new ConsumptionService().getAllUsersConsumptionsImpact().forEach(System.out::println);
+    public void getAllConsumptionsImpactSorted() throws SQLException {
+        List<User>  users = new ConsumptionService().getAllUsersConsumptionsImpactSorted();
+        users.forEach(e->{
+            System.out.println(e);
+            e.getConsumptionList().forEach(System.out::println);
+        });
                 endLine();
         }
 
@@ -222,7 +228,7 @@ public class ConsumptionView {
                 getAllConsumptions();
                 break;
             case 4 :
-                getAllConsumptionsImpact();
+                getAllConsumptionsImpactSorted();
                 break;
             case 5 :
                 getLogement();
@@ -245,7 +251,7 @@ public class ConsumptionView {
 
 
     private void  endLine(){
-        System.out.println("Enter for continue ! ");
+        System.err.println("Enter for continue ! ");
         sc.nextLine();
     }
 
