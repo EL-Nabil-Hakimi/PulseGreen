@@ -32,6 +32,4 @@ public class UserService {
         return new UserDao(conn).deleteUserByCin(cin);
     }
 
-
-
 }

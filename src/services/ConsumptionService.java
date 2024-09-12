@@ -18,19 +18,22 @@ public class ConsumptionService {
     Connection conn = connectionUtil.getConnection();
 
 
-    public boolean addAlimentation(LocalDate startDate , LocalDate endDate , float consumption ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
+    public boolean addAlimentation(LocalDate startDate , LocalDate endDate , float consumption
+            ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Alimentation newAlimentation = new Alimentation(startDate , endDate , consumption , type , name , impact , poids);
         new AlimentationDao(conn).insertAlimentation(newAlimentation , cin , type);
         return true;
     }
 
-    public boolean addTransport(LocalDate startDate , LocalDate endDate , float consumption ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
+    public boolean addTransport(LocalDate startDate , LocalDate endDate , float consumption
+            ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Transport newTransport = new Transport(startDate , endDate , consumption , type , name , impact , poids);
         new TransportDao(conn).insertVhicleType(newTransport , cin , type);
         return true;
     }
 
-    public boolean addLogement(LocalDate startDate , LocalDate endDate , float consumption ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
+    public boolean addLogement(LocalDate startDate , LocalDate endDate , float consumption
+            ,ConsumptionType type , String name , float impact ,float poids ,  String cin) throws SQLException {
         Logement newLogement = new Logement(startDate , endDate , consumption , type , name , impact , poids);
         new LogementDao(conn).insertEnergieType(newLogement , cin , type);
         return true;
