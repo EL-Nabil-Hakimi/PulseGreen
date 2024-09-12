@@ -24,7 +24,6 @@ public class Main {
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
-
                 new UserView().menuManagemet();
                 break;
             case 2:
@@ -33,8 +32,7 @@ public class Main {
             case 0 :
                 System.exit(0);
                 break;
+            }
         }
     }
-    }
-
 }

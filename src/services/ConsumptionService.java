@@ -195,7 +195,4 @@ public class ConsumptionService {
         return inactiveUsers;
         };
 
-
-
-
 }
